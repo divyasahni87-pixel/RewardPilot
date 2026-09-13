@@ -1,0 +1,56 @@
+[
+  {
+    "from_program": "Chase Ultimate Rewards",
+    "to_program": "Marriott Bonvoy",
+    "ratio_from": 1000,
+    "ratio_to": 1000,
+    "notes": "Most Chase travel partners transfer 1:1; verify current promotion before transfer.",
+    "source_url": "https://www.chase.com/sapphire-cards/personal/preferred",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "from_program": "Chase Ultimate Rewards",
+    "to_program": "United MileagePlus",
+    "ratio_from": 1000,
+    "ratio_to": 1000,
+    "notes": "Listed as a Chase transfer partner; most partners transfer 1:1.",
+    "source_url": "https://www.chase.com/sapphire-cards/personal/preferred",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "from_program": "Chase Ultimate Rewards",
+    "to_program": "World of Hyatt",
+    "ratio_from": 1000,
+    "ratio_to": 750,
+    "notes": "4:3 rate for affected Sapphire Preferred accounts; accounts opened before 2026-06-15 retain 1:1 through 2026-09-30. Demo should model account-open-date rule.",
+    "source_url": "https://www.chase.com/sapphire-cards/personal/preferred",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "from_program": "Amex Membership Rewards",
+    "to_program": "Delta SkyMiles",
+    "ratio_from": 1000,
+    "ratio_to": 1000,
+    "notes": "U.S. airline transfers may incur an excise tax offset fee.",
+    "source_url": "https://global.americanexpress.com/rewards/transfer?rfs=1",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "from_program": "Amex Membership Rewards",
+    "to_program": "Marriott Bonvoy",
+    "ratio_from": 1000,
+    "ratio_to": 1000,
+    "notes": "Transfer ratio can change; transfers are final under Amex terms.",
+    "source_url": "https://global.americanexpress.com/rewards/transfer?rfs=1",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "from_program": "Amex Membership Rewards",
+    "to_program": "Hilton Honors",
+    "ratio_from": 1000,
+    "ratio_to": 2000,
+    "notes": "Current published Amex transfer ratio.",
+    "source_url": "https://global.americanexpress.com/rewards/transfer?rfs=1",
+    "last_verified": "2026-09-12"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "close_call_fraction": 0.05,
+  "transfer_fees": [
+    {
+      "from_program": "Amex Membership Rewards",
+      "to_program": "Delta SkyMiles",
+      "usd_per_source_point": 0.0006,
+      "maximum_usd": 99,
+      "source_file": "amex_delta_transfer_policy.md",
+      "source_url": "https://global.americanexpress.com/rewards/transfer?rfs=1",
+      "last_verified": "2026-09-12"
+    }
+  ]
+}

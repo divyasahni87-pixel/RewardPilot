@@ -1,0 +1,18 @@
+{
+  "Delta SkyMiles": {
+    "cents_per_point": 1.2,
+    "type": "demo_assumption"
+  },
+  "Amex Membership Rewards": {
+    "cents_per_point": 1.5,
+    "type": "demo_assumption"
+  },
+  "Chase Ultimate Rewards": {
+    "cents_per_point": 1.5,
+    "type": "demo_assumption"
+  },
+  "Marriott Bonvoy": {
+    "cents_per_point": 0.7,
+    "type": "demo_assumption"
+  }
+}

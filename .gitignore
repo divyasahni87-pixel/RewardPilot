@@ -1,0 +1,52 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Local user wallet and SQLite sidecar files
+data/rewardpilot.db
+data/rewardpilot.db-journal
+data/rewardpilot.db-wal
+data/rewardpilot.db-shm
+
+# Local credentials
+.env
+
+# Local live-agent test trace (contains wallet information)
+agent_test_output.json
+ui_live_results.json
+RewardPilot_live_audit.md
+.streamlit/secrets.toml
+
+PS C:\Agentic AI\RewardPilot> type .gitignore
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Local user wallet and SQLite sidecar files
+data/rewardpilot.db
+data/rewardpilot.db-journal
+data/rewardpilot.db-wal
+data/rewardpilot.db-shm
+
+# Local credentials
+.env
+
+# Local live-agent test trace (contains wallet information)
+agent_test_output.json
+ui_live_results.json
+RewardPilot_live_audit.md
+.streamlit/secrets.toml

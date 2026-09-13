@@ -1,0 +1,932 @@
+{
+  "schema_version": 1,
+  "notes": [
+    "Wallets are isolated fixtures, never written to SQLite.",
+    "Numeric expectations are independently derived from catalog categories and configured valuations.",
+    "Non-flight mappings use intended catalog-based golden expectations.",
+    "Expected tools describe the evaluation plan, not observed LLM choices.",
+    "Feasible means balance or supported transfer coverage, not live award availability.",
+    "Overall comparison logic is deliberately outside this suite while another task may modify it."
+  ],
+  "cases": [
+    {
+      "case_id": "01_direct",
+      "description": "Direct Delta flight",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": []
+      }
+    },
+    {
+      "case_id": "02_chase",
+      "description": "Delta via Chase Travel",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1250,
+        "booking_channel": "chase_travel"
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "chase_sapphire_preferred",
+        "categories": {
+          "delta_platinum_amex": "other",
+          "amex_gold": "other",
+          "chase_sapphire_preferred": "chase_travel"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": []
+      }
+    },
+    {
+      "case_id": "03_amex",
+      "description": "Delta via Amex Travel",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "amex_travel"
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "other",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": []
+      }
+    },
+    {
+      "case_id": "04_unknown",
+      "description": "Unknown booking channel",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": ""
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "chase_sapphire_preferred",
+        "categories": {
+          "delta_platinum_amex": "other",
+          "amex_gold": "other",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": []
+      }
+    },
+    {
+      "case_id": "05_enough",
+      "description": "Enough existing Delta miles",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": {
+        "target_program": "Delta SkyMiles",
+        "required_points": 45000,
+        "taxes_fees": 33.6
+      },
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment",
+          "evaluate_points_redemption"
+        ],
+        "points_feasible": true,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": [],
+        "shortfall": 0,
+        "can_book_directly": true,
+        "transfer_paths": []
+      }
+    },
+    {
+      "case_id": "06_transfer",
+      "description": "Amex transfer covers Delta shortfall",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": {
+        "target_program": "Delta SkyMiles",
+        "required_points": 90000,
+        "taxes_fees": 33.6
+      },
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment",
+          "evaluate_points_redemption"
+        ],
+        "points_feasible": true,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": [],
+        "shortfall": 40000,
+        "can_book_directly": false,
+        "transfer_paths": [
+          {
+            "from_program": "Amex Membership Rewards",
+            "required_transfer": 40000,
+            "can_cover_shortfall": true,
+            "ratio": "1000:1000"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "07_insufficient",
+      "description": "Amex cannot cover shortfall",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": {
+        "target_program": "Delta SkyMiles",
+        "required_points": 150000,
+        "taxes_fees": 33.6
+      },
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment",
+          "evaluate_points_redemption"
+        ],
+        "points_feasible": false,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": [],
+        "shortfall": 100000,
+        "can_book_directly": false,
+        "transfer_paths": [
+          {
+            "from_program": "Amex Membership Rewards",
+            "required_transfer": 100000,
+            "can_cover_shortfall": false,
+            "ratio": "1000:1000"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "08_high_value",
+      "description": "Extremely high redemption value",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 500,
+        "booking_channel": "direct"
+      },
+      "award": {
+        "target_program": "Delta SkyMiles",
+        "required_points": 450,
+        "taxes_fees": 10
+      },
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment",
+          "evaluate_points_redemption"
+        ],
+        "points_feasible": true,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": [],
+        "shortfall": 0,
+        "can_book_directly": true,
+        "transfer_paths": [],
+        "redemption_cpp": 108.89
+      }
+    },
+    {
+      "case_id": "09_poor_value",
+      "description": "Poor redemption value at configured Delta valuation",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 500,
+        "booking_channel": "direct"
+      },
+      "award": {
+        "target_program": "Delta SkyMiles",
+        "required_points": 45000,
+        "taxes_fees": 10
+      },
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment",
+          "evaluate_points_redemption"
+        ],
+        "points_feasible": true,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": [],
+        "shortfall": 0,
+        "can_book_directly": true,
+        "transfer_paths": [],
+        "redemption_cpp": 1.09
+      }
+    },
+    {
+      "case_id": "10_cash_only",
+      "description": "Cash only; no award or policy invocation",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": []
+      }
+    },
+    {
+      "case_id": "11_missing_award",
+      "description": "Reject absent award price",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": {
+        "target_program": "Delta SkyMiles",
+        "required_points": null,
+        "taxes_fees": 10
+      },
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment",
+          "evaluate_points_redemption"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": [],
+        "award_rejected": true
+      }
+    },
+    {
+      "case_id": "12_missing_valuation",
+      "description": "Supported United award has no configured valuation",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": {
+        "target_program": "United MileagePlus",
+        "required_points": 20000,
+        "taxes_fees": 10
+      },
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment",
+          "evaluate_points_redemption"
+        ],
+        "points_feasible": true,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": [],
+        "valuation_missing": true,
+        "shortfall": 20000,
+        "can_book_directly": false,
+        "transfer_paths": [
+          {
+            "from_program": "Chase Ultimate Rewards",
+            "required_transfer": 20000,
+            "can_cover_shortfall": true,
+            "ratio": "1000:1000"
+          }
+        ]
+      }
+    },
+    {
+      "case_id": "13_takeoff",
+      "description": "TakeOff 15 eligibility conditions",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment",
+          "search_rewards_policy"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": "delta_takeoff15.md",
+        "must_contain": [
+          "Delta- or Delta Connection-operated",
+          "delta.com or the Fly Delta app"
+        ],
+        "must_not_contain": []
+      },
+      "policy": {
+        "question": "When can I use TakeOff 15?",
+        "program": "Delta SkyMiles",
+        "policy_type": "award_discount"
+      }
+    },
+    {
+      "case_id": "14_partner",
+      "description": "Partner-operated exclusion",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment",
+          "search_rewards_policy"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": "delta_takeoff15.md",
+        "must_contain": [
+          "Partner-operated flights are not eligible."
+        ],
+        "must_not_contain": []
+      },
+      "policy": {
+        "question": "Can I use TakeOff 15 on a partner-operated flight?",
+        "program": "Delta SkyMiles",
+        "policy_type": "award_discount"
+      }
+    },
+    {
+      "case_id": "15_finality",
+      "description": "Amex transfer is final",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment",
+          "search_rewards_policy"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": "amex_delta_transfer_policy.md",
+        "must_contain": [
+          "Transfers to a partner loyalty program are final.",
+          "$0.0006",
+          "Maximum fee: $99"
+        ],
+        "must_not_contain": []
+      },
+      "policy": {
+        "question": "Is an Amex Membership Rewards transfer to Delta reversible?",
+        "program": "Amex Membership Rewards",
+        "policy_type": "transfer_policy"
+      }
+    },
+    {
+      "case_id": "16_amazon",
+      "description": "Amazon with eligible Prime member and Prime Visa in fixture wallet",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred",
+          "prime_visa"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "amazon",
+        "merchant": "Amazon",
+        "amount": 1000,
+        "booking_channel": "direct",
+        "prime_member": true
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "prime_visa",
+        "categories": {
+          "delta_platinum_amex": "other",
+          "amex_gold": "other",
+          "chase_sapphire_preferred": "other",
+          "prime_visa": "amazon"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": []
+      }
+    },
+    {
+      "case_id": "17_restaurant",
+      "description": "Restaurant bonus categories in current catalog",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "restaurant",
+        "merchant": "Restaurant",
+        "amount": 100,
+        "booking_channel": "direct"
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "restaurant",
+          "amex_gold": "restaurant",
+          "chase_sapphire_preferred": "dining"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": []
+      }
+    },
+    {
+      "case_id": "18_marriott",
+      "description": "Direct Marriott hotel with Boundless in fixture wallet",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred",
+          "marriott_boundless"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "hotel",
+        "merchant": "Marriott",
+        "amount": 500,
+        "booking_channel": "direct"
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "marriott_boundless",
+        "categories": {
+          "delta_platinum_amex": "hotel_direct",
+          "amex_gold": "other",
+          "chase_sapphire_preferred": "travel_other",
+          "marriott_boundless": "marriott"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": []
+      }
+    },
+    {
+      "case_id": "19_wallet_only",
+      "description": "Only owned Delta card can be recommended",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "delta_platinum_amex",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": [
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ]
+      }
+    },
+    {
+      "case_id": "20_no_evidence",
+      "description": "No invented evidence for unmatched program/type filter",
+      "user_id": 1,
+      "wallet": {
+        "card_ids": [
+          "delta_platinum_amex",
+          "amex_gold",
+          "chase_sapphire_preferred"
+        ],
+        "reward_balances": {
+          "Delta SkyMiles": 50000,
+          "Amex Membership Rewards": 70000,
+          "Chase Ultimate Rewards": 85000
+        }
+      },
+      "purchase": {
+        "type": "flight",
+        "merchant": "Delta",
+        "amount": 1500,
+        "booking_channel": "direct"
+      },
+      "award": null,
+      "expected": {
+        "cash_winner": "amex_gold",
+        "categories": {
+          "delta_platinum_amex": "delta_purchase",
+          "amex_gold": "flight_direct_or_amex_travel",
+          "chase_sapphire_preferred": "travel_other"
+        },
+        "expected_tools": [
+          "get_rewards_wallet",
+          "compare_cash_payment",
+          "search_rewards_policy"
+        ],
+        "points_feasible": null,
+        "expected_policy_source": null,
+        "must_contain": [],
+        "must_not_contain": [
+          "delta_takeoff15.md",
+          "amex_delta_transfer_policy.md"
+        ],
+        "empty_evidence": true
+      },
+      "policy": {
+        "question": "Does Amex offer TakeOff 15?",
+        "program": "Amex Membership Rewards",
+        "policy_type": "award_discount"
+      }
+    }
+  ]
+}

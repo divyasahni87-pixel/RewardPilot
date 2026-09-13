@@ -1,0 +1,24 @@
+# Adapted from Streamlit's shadcn theme with local system fonts.
+[theme]
+base = "light"
+primaryColor = "#163656"
+backgroundColor = "#F6F7FA"
+secondaryBackgroundColor = "#EDF0F5"
+textColor = "#14243B"
+linkColor = "#365E86"
+borderColor = "#DEE3EC"
+showWidgetBorder = true
+baseRadius = "12px"
+buttonRadius = "12px"
+font = "sans-serif"
+baseFontSize = 15
+headingFontSizes = ["36px", "26px", "21px", "18px", "16px", "14px"]
+headingFontWeights = [700, 650, 600, 600, 600, 600]
+chartCategoricalColors = ["#B68A3D", "#243C5A", "#8292A7"]
+
+[server]
+headless = true
+address = "127.0.0.1"
+
+[browser]
+gatherUsageStats = false

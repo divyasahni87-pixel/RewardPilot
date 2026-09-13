@@ -1,0 +1,403 @@
+[
+  {
+    "card_id": "chase_sapphire_preferred",
+    "issuer": "Chase",
+    "card_name": "Chase Sapphire Preferred",
+    "reward_program": "Chase Ultimate Rewards",
+    "annual_fee_usd": 95,
+    "earn_rules": [
+      {
+        "category": "chase_travel",
+        "rate": 5.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "dining",
+        "rate": 3.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "gas_ev",
+        "rate": 3.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "vacation_homes",
+        "rate": 3.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "online_grocery",
+        "rate": 3.0,
+        "unit": "points_per_dollar",
+        "notes": "Excludes Target, Walmart and wholesale clubs"
+      },
+      {
+        "category": "streaming",
+        "rate": 3.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "travel_other",
+        "rate": 2.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "other",
+        "rate": 1.0,
+        "unit": "points_per_dollar"
+      }
+    ],
+    "key_benefits": [
+      {
+        "name": "Chase Travel hotel credit",
+        "value": "up to $100 per account anniversary year",
+        "notes": "Eligible Chase Travel hotel stays"
+      },
+      {
+        "name": "Global Entry/TSA PreCheck/NEXUS credit",
+        "value": "up to $120 every 4 years"
+      }
+    ],
+    "source_url": "https://www.chase.com/sapphire-cards/personal/preferred",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "card_id": "chase_sapphire_reserve",
+    "issuer": "Chase",
+    "card_name": "Chase Sapphire Reserve",
+    "reward_program": "Chase Ultimate Rewards",
+    "annual_fee_usd": null,
+    "earn_rules": [
+      {
+        "category": "chase_travel",
+        "rate": 8.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "flight_direct",
+        "rate": 4.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "hotel_direct",
+        "rate": 4.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "dining",
+        "rate": 3.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "other",
+        "rate": 1.0,
+        "unit": "points_per_dollar"
+      }
+    ],
+    "key_benefits": [
+      {
+        "name": "Annual travel credit",
+        "value": "up to $300 annually"
+      },
+      {
+        "name": "Points Boost",
+        "value": "up to 2x value on select Chase Travel bookings",
+        "notes": "Dynamic; must not be assumed for every booking"
+      }
+    ],
+    "source_url": "https://www.chase.com/sapphire-cards/personal/reserve",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "card_id": "prime_visa",
+    "issuer": "Chase",
+    "card_name": "Prime Visa",
+    "reward_program": "Prime Visa cash back",
+    "annual_fee_usd": 0,
+    "earn_rules": [
+      {
+        "category": "amazon",
+        "rate": 5.0,
+        "unit": "percent_cashback",
+        "notes": "Eligible Prime membership required"
+      },
+      {
+        "category": "whole_foods",
+        "rate": 5.0,
+        "unit": "percent_cashback",
+        "notes": "Eligible Prime membership required"
+      },
+      {
+        "category": "chase_travel",
+        "rate": 5.0,
+        "unit": "percent_cashback",
+        "notes": "Eligible Prime membership required"
+      },
+      {
+        "category": "gas",
+        "rate": 2.0,
+        "unit": "percent_cashback"
+      },
+      {
+        "category": "dining",
+        "rate": 2.0,
+        "unit": "percent_cashback"
+      },
+      {
+        "category": "local_transit_commuting",
+        "rate": 2.0,
+        "unit": "percent_cashback"
+      },
+      {
+        "category": "other",
+        "rate": 1.0,
+        "unit": "percent_cashback"
+      }
+    ],
+    "key_benefits": [],
+    "source_url": "https://creditcards.chase.com/dining-credit-cards",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "card_id": "amex_gold",
+    "issuer": "American Express",
+    "card_name": "American Express Gold Card",
+    "reward_program": "Amex Membership Rewards",
+    "annual_fee_usd": null,
+    "earn_rules": [
+      {
+        "category": "restaurant",
+        "rate": 4.0,
+        "unit": "points_per_dollar",
+        "cap": "$50,000/calendar year, then 1x"
+      },
+      {
+        "category": "us_supermarket",
+        "rate": 4.0,
+        "unit": "points_per_dollar",
+        "cap": "$25,000/calendar year, then 1x"
+      },
+      {
+        "category": "amex_travel_prepaid_hotel",
+        "rate": 5.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "flight_direct_or_amex_travel",
+        "rate": 3.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "amex_travel_prepaid_car_or_cruise",
+        "rate": 2.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "other",
+        "rate": 1.0,
+        "unit": "points_per_dollar"
+      }
+    ],
+    "key_benefits": [],
+    "source_url": "https://www.americanexpress.com/us/credit-cards/card/gold-card/",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "card_id": "amex_platinum",
+    "issuer": "American Express",
+    "card_name": "The Platinum Card from American Express",
+    "reward_program": "Amex Membership Rewards",
+    "annual_fee_usd": null,
+    "earn_rules": [
+      {
+        "category": "flight_direct_or_amex_travel",
+        "rate": 5.0,
+        "unit": "points_per_dollar",
+        "cap": "Up to $500,000/calendar year on flights"
+      },
+      {
+        "category": "amex_travel_prepaid_hotel",
+        "rate": 5.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "other",
+        "rate": 1.0,
+        "unit": "points_per_dollar"
+      }
+    ],
+    "key_benefits": [
+      {
+        "name": "Global Lounge Collection",
+        "value": "Lounge access subject to program terms"
+      },
+      {
+        "name": "Delta Sky Club visits",
+        "value": "10 visits when flying an eligible Delta flight",
+        "notes": "Per current published Platinum terms"
+      }
+    ],
+    "source_url": "https://www.americanexpress.com/us/credit-cards/card/platinum/",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "card_id": "delta_gold_amex",
+    "issuer": "American Express",
+    "card_name": "Delta SkyMiles Gold American Express Card",
+    "reward_program": "Delta SkyMiles",
+    "annual_fee_usd": 150,
+    "earn_rules": [
+      {
+        "category": "delta_purchase",
+        "rate": 2.0,
+        "unit": "miles_per_dollar"
+      },
+      {
+        "category": "restaurant",
+        "rate": 2.0,
+        "unit": "miles_per_dollar"
+      },
+      {
+        "category": "us_supermarket",
+        "rate": 2.0,
+        "unit": "miles_per_dollar"
+      },
+      {
+        "category": "other",
+        "rate": 1.0,
+        "unit": "miles_per_dollar"
+      }
+    ],
+    "key_benefits": [
+      {
+        "name": "TakeOff 15",
+        "value": "15% off eligible Delta award travel",
+        "notes": "Delta-operated flights; not taxes/fees"
+      },
+      {
+        "name": "First checked bag free",
+        "value": "Included on eligible Delta flights"
+      },
+      {
+        "name": "Second checked bag free",
+        "value": "Included on domestic Delta flights per current card page"
+      },
+      {
+        "name": "Delta flight credit",
+        "value": "$200 after $10,000 spend in a calendar year"
+      },
+      {
+        "name": "Delta Stays credit",
+        "value": "up to $100/year"
+      }
+    ],
+    "source_url": "https://www.americanexpress.com/us/credit-cards/card/delta-skymiles-gold-american-express-card/",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "card_id": "delta_platinum_amex",
+    "issuer": "American Express",
+    "card_name": "Delta SkyMiles Platinum American Express Card",
+    "reward_program": "Delta SkyMiles",
+    "annual_fee_usd": null,
+    "earn_rules": [
+      {
+        "category": "delta_purchase",
+        "rate": 3.0,
+        "unit": "miles_per_dollar"
+      },
+      {
+        "category": "hotel_direct",
+        "rate": 3.0,
+        "unit": "miles_per_dollar"
+      },
+      {
+        "category": "restaurant",
+        "rate": 2.0,
+        "unit": "miles_per_dollar"
+      },
+      {
+        "category": "us_supermarket",
+        "rate": 2.0,
+        "unit": "miles_per_dollar"
+      },
+      {
+        "category": "other",
+        "rate": 1.0,
+        "unit": "miles_per_dollar"
+      }
+    ],
+    "key_benefits": [
+      {
+        "name": "TakeOff 15",
+        "value": "15% off eligible Delta award travel",
+        "notes": "Delta-operated flights; not taxes/fees"
+      }
+    ],
+    "source_url": "https://www.americanexpress.com/en-us/account/get-started/deltaplatinum/",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "card_id": "delta_reserve_amex",
+    "issuer": "American Express",
+    "card_name": "Delta SkyMiles Reserve American Express Card",
+    "reward_program": "Delta SkyMiles",
+    "annual_fee_usd": null,
+    "earn_rules": [
+      {
+        "category": "delta_purchase",
+        "rate": 3.0,
+        "unit": "miles_per_dollar"
+      },
+      {
+        "category": "other",
+        "rate": 1.0,
+        "unit": "miles_per_dollar"
+      }
+    ],
+    "key_benefits": [
+      {
+        "name": "TakeOff 15",
+        "value": "15% off eligible Delta award travel",
+        "notes": "Delta-operated flights; not taxes/fees"
+      }
+    ],
+    "source_url": "https://www.americanexpress.com/en-us/account/get-started/deltareserve/earn-rewards",
+    "last_verified": "2026-09-12"
+  },
+  {
+    "card_id": "marriott_boundless",
+    "issuer": "Chase",
+    "card_name": "Marriott Bonvoy Boundless",
+    "reward_program": "Marriott Bonvoy",
+    "annual_fee_usd": null,
+    "earn_rules": [
+      {
+        "category": "marriott",
+        "rate": 6.0,
+        "unit": "points_per_dollar"
+      },
+      {
+        "category": "grocery_gas_dining_combined",
+        "rate": 3.0,
+        "unit": "points_per_dollar",
+        "cap": "First $6,000 in combined purchases annually"
+      },
+      {
+        "category": "other",
+        "rate": 2.0,
+        "unit": "points_per_dollar"
+      }
+    ],
+    "key_benefits": [
+      {
+        "name": "Annual Free Night Award",
+        "value": "Up to 35,000 points",
+        "notes": "Can add up to 25,000 points; availability applies"
+      }
+    ],
+    "source_url": "https://marriott.chase.com/boundless",
+    "last_verified": "2026-09-12"
+  }
+]
